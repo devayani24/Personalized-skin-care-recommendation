@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Explanation</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f8decb;
+            background: url('https://img.freepik.com/free-photo/natural-treatment-with-copy-space_23-2148574956.jpg ') center bottom / 100% auto no-repeat #f8decb;
+        }
+        .container {
+            display: flex;
+            flex-direction: column; /* Display elements in a column */
+            align-items: center; /* Center elements horizontally */
+            padding: 40px; /* Adjust padding */
+            margin-top: 5vh;
+            max-width: 1200px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(203, 41, 41, 0.658);
+        }
+        .product-boxes {
+            display: flex;
+            justify-content: space-between; /* Create space between boxes */
+            width: 100%; /* Set full width */
+            margin-bottom: 20px; /* Adjust margin between boxes and welcome message */
+        }
+        .product-box {
+            width: 48%; /* Set the width of each box */
+            padding: 20px; /* Adjust padding */
+            border: 1px solid #ccc; /* Add a border to create a line box effect */
+            border-radius: 10px; /* Optional: Add border radius */
+        }
+        .product-box h2 {
+            margin-bottom: 10px; /* Adjust margin below headings */
+        }
+        .product-list {
+            list-style-type: disc; /* Use disc for bullet points */
+            padding-left: 20px; /* Adjust left padding for bullet points */
+        }
+        .product-list li {
+            margin-bottom: 5px; /* Adjust margin between items */
+        }
+        .product-box:first-child {
+            background-color: rgba(137, 214, 150, 0.878); /* Fill the first product box with yellow */
+            width: 48%;
+            padding: 40px; /* Adjusted padding for the desired size */
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        .back-button {
+            display: block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+        
+        
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Products Recommended</h1>
+        <div class="product-boxes">
+            
+            <div class="product-box">
+                <h2>{{text1}}</h2>
+                <ul class="product-list">
+                    {% for concern in reviewed_prod_skinConcern %}
+                        <li>{{ concern }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% for product_name, skin_concerns in product_data_dict.items() %}
+                <div class="product-box">
+                    <h3>{{ product_name }}</h3>
+                    <ul class="product-list">
+                        {% for concern in skin_concerns %}
+                            <li>{{ concern }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+        <!-- <button class="back-button" onclick="goBack()">Go Back</button> -->
+    </div>
+
+    <!-- <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script> -->
+</body>
+</html>

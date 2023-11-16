@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f8decb;
+            background: url('https://img.freepik.com/free-photo/natural-treatment-with-copy-space_23-2148574956.jpg') center bottom / 100% auto no-repeat #f8decb;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px; /* Adjusted padding */
+            margin-top: 10vh;
+            width: 100%;
+            max-width: 900px;
+            background-color: white;
+            border-radius: 20px; /* Increased border-radius for a rounder box */
+            box-shadow: 0 0 50px rgba(203, 41, 41, 0.658); /* Increased box shadow */
+        }
+
+        .form-container {
+            text-align: center;
+            border: 1px solid #ccc;
+            padding: 30px; /* Adjusted padding */
+            margin-bottom: 20px; /* Added margin to create space between form containers */
+
+            border-radius: 10px;
+            box-shadow: 0 0 60px rgba(12, 181, 54, 0.36);
+            background-color: white;
+            width: 80%; /* Make sure it takes the full width */
+        }
+        .checkbox-container {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-gap: 10px;
+            max-width: 600px; /* Adjust the width as needed */
+            margin: 0 auto; /* Center the checkboxes */
+            padding: 20px; /* Add some padding for spacing around the grid */
+            border: 2px solid #ccc; /* Add a border for the grid */
+            border-radius: 10px; /* Optional: Add border radius for rounded corners */
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-item input {
+            margin-right: 10px; /* Add some spacing between checkbox and label */
+        }
+
+        .checkbox-item label {
+            margin: 0;
+        }
+
+        /* Optional: Highlight when checked */
+        .checkbox-item input:checked + label {
+            font-weight: bold;
+        }
+
+        .tab {
+            height: 90px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Curu Skin Care Recommendation System</h1>
+        <div class="form-container">
+            <h1>Existing Users</h1>
+            <form action="/home" method="POST">
+                <h2>
+                    <label for="userName">User Name: </label>
+                    <select name="userName" id="userName">
+                        <option value="Display">Please Select the customer name</option>
+                        {% for i in username_list %}
+                        <option value="{{i}}">{{i}}</option>
+                        {% endfor %}
+                    </select>
+                </h2>
+                <button type="submit">Submit</button>
+                <button type="reset">Reset</button>
+            </form>
+        </div>
+        <div class="form-container">
+            <h1>New users</h1>
+            <h2>Select your skin concerns</h2>
+            <form action="/home" method="POST">
+                <div class="checkbox-container">
+                    {% for i in flattened_list %}
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="skinConcerns" value="{{ i }}" id="{{ i }}">
+                            <label for="{{ i }}">{{ i }}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button type="submit">Submit</button>
+                <button type="reset">Reset</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

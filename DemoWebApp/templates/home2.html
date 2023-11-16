@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dry Products</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f8decb;
+            background: url('https://img.freepik.com/free-photo/natural-treatment-with-copy-space_23-2148574956.jpg ') center bottom / 100% auto no-repeat #f8decb;
+        }
+        .container {
+            display: flex;
+            flex-direction: column; /* Display elements in a column */
+            align-items: center; /* Center elements horizontally */
+            padding: 40px; /* Adjust padding */
+            margin-top: 5vh;
+            max-width: 1200px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(203, 41, 41, 0.658);
+        }
+        .product-boxes {
+            display: flex;
+            justify-content: space-between; /* Create space between boxes */
+            width: 100%; /* Set full width */
+            margin-bottom: 20px; /* Adjust margin between boxes and welcome message */
+        }
+        .product-box {
+            width: 48%; /* Set the width of each box */
+            padding: 40px; /* Adjust padding */
+            border: 1px solid #ccc; /* Add a border to create a line box effect */
+            border-radius: 10px; /* Optional: Add border radius */
+        }
+        .product-box h2 {
+            margin-bottom: 10px; /* Adjust margin below headings */
+        }
+        .product-list {
+            list-style-type: disc; /* Use disc for bullet points */
+            padding-left: 20px; /* Adjust left padding for bullet points */
+        }
+        .product-list li {
+            margin-bottom: 5px; /* Adjust margin between items */
+        }
+        .welcome-container {
+            text-align: center; /* Center the content */
+            padding: 20px; /* Add padding */
+            margin-bottom: 20px; /* Add margin to separate from product boxes */
+        }
+        .product-box button {
+            display: block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .product-box button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="welcome-container">
+            <h1>Welcome {{userName}}</h1>
+        </div>
+        
+        <div class="product-boxes">
+            <div class="product-box">
+                <h2>Products reviewed by {{userName}}</h2>
+                <ul class="product-list">
+                    {% for i in prod_reviewed %}
+                        <li>{{ i }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="product-box">
+                <h2>Products recommended based on User Based Collaborative Function (UBCF)</h2>
+                <ul class="product-list">
+                    {% for i in cos_recommended_products %}
+                        <li>{{ i }}</li>
+                    {% endfor %}
+                </ul>
+                
+            </div>
+
+            <div class="product-box">
+                <h2>Products recommended based on most common skin concerns</h2>
+                <ul class="product-list">
+                    {% for i in spacy_recommended_products %}
+                        <li>{{ i }}</li>
+                    {% endfor %}
+                </ul>
+                <form action="/spacy" method="GET">
+                    <button type="submit">Explanation</button>
+                </form>
+            </div>
+        </div>
+
+        
+        
+    </div>
+   
+</body>
+</html>
